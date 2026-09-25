@@ -1,1 +1,17 @@
-@import "tailwindcss"; @theme { --color-brand: #0f766e; --color-ink: #0f172a; } @layer base { * { @apply border-slate-200; } body { @apply min-h-screen bg-slate-50 text-slate-900 antialiased; } button,input { font: inherit; } } 
+@import "tailwindcss";
+@theme {
+  --color-brand: #0f766e;
+  --color-ink: #0f172a;
+}
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+  body {
+    @apply min-h-screen bg-slate-50 text-slate-900 antialiased;
+  }
+  button,
+  input {
+    font: inherit;
+  }
+}
