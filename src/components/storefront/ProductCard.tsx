@@ -28,14 +28,14 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       
       <CardContent className="p-3 sm:p-5">
-        <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
+        <div className="flex flex-col gap-1 sm:flex-row sm:gap-3 justify-between">
           <Link
             className="font-display text-sm font-semibold hover:text-teal-700 sm:text-base"
             to={`/products/${product.id}`}
           >
             {product.name}
           </Link>
-          <b className="whitespace-nowrap text-xs sm:text-sm">
+          <b className="whitespace-nowrap text-sm sm:text-base">
             {rupiah(product.price)}
           </b>
         </div>
@@ -43,7 +43,7 @@ export function ProductCard({ product }: { product: Product }) {
           Finished good · Pickup from our facility
         </p>
         <Button
-          className="mt-3 h-8 w-full text-xs sm:mt-5 sm:h-10 sm:text-sm"
+          className="mt-5 h-8 w-full text-xs sm:mt-7 sm:h-10 sm:text-sm"
           disabled={!product.quantity}
           onClick={addToCart}
         >
