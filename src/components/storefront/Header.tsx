@@ -12,10 +12,10 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const nav = (
     <nav className="flex flex-col gap-1 lg:flex-row">
-      <Link onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100" to="/">
+      <Link onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100 lg:text-base" to="/">
         Collection
       </Link>
-      <Link onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100" to="/cart">
+      <Link onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100 lg:text-base" to="/cart">
         Your cart
       </Link>
     </nav>
@@ -27,12 +27,12 @@ export function Header() {
         <Link className="flex items-center gap-3" to="/">
           <span className="grid size-10 place-items-center rounded-xl bg-teal-700 text-white"><Boxes className="size-5" /></span>
           <span>
-            <b className="font-display block tracking-tight">Supreme Store</b>
+            <b className="font-display block tracking-tight lg:text-xl">Supreme Store</b>
           </span>
         </Link>
         <div className="hidden lg:block">{nav}</div>
         <div className="flex gap-1">
-          <Button asChild variant="outline" className="hidden sm:inline-flex">
+          <Button asChild variant="outline" className="hidden sm:inline-flex lg:text-base">
             <Link to="/cart"><ShoppingBag className="size-4" />Cart {count > 0 && <Badge className="ml-1 bg-teal-700 text-white">{count}</Badge>}</Link>
           </Button>
           <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu" onClick={() => setOpen(true)}><Menu /></Button>
