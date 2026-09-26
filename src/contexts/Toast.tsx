@@ -23,8 +23,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         >
           <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-teal-700" />
           <div className="flex-1">
-            <p className="font-semibold text-stone-950 dark:text-stone-50">Added to cart</p>
-            <p className="mt-0.5 text-stone-500 dark:text-stone-400">{message}</p>
+            <p className="font-semibold text-stone-950 dark:text-stone-50">
+              Added to cart
+            </p>
+            <p className="mt-0.5 text-stone-500 dark:text-stone-400">
+              {message}
+            </p>
           </div>
           <button
             aria-label="Dismiss notification"

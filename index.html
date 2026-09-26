@@ -7,10 +7,15 @@
     <script>
       (() => {
         const savedTheme = localStorage.getItem("supreme-theme");
-        const isDark = savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        const isDark =
+          savedTheme === "dark" ||
+          (!savedTheme &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
         document.documentElement.classList.toggle("dark", isDark);
         document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-        document.querySelector("meta[name=\"theme-color\"]")?.setAttribute("content", isDark ? "#0c0a09" : "#fafaf9");
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", isDark ? "#0c0a09" : "#fafaf9");
       })();
     </script>
     <title>Supreme Store</title>

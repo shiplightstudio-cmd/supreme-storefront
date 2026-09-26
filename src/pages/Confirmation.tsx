@@ -17,24 +17,51 @@ export function ConfirmationPage() {
   useEffect(() => {
     if (!reference) return;
     let active = true;
-    const loadStatus = () => api.status(reference).then((status) => active && setStatus(status)).catch((error: Error) => active && setError(error.message));
+    const loadStatus = () =>
+      api
+        .status(reference)
+        .then((status) => active && setStatus(status))
+        .catch((error: Error) => active && setError(error.message));
     loadStatus();
     const timer = window.setInterval(loadStatus, 4000);
-    return () => { active = false; window.clearInterval(timer); };
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+    };
   }, [reference]);
 
   const paid = status?.paymentStatus === "paid";
-  const message = error || (!status ? "Checking your payment…" : paid ? `Your pickup order is confirmed for ${rupiah(status.totalPrice)}.` : "We will refresh this page when Midtrans confirms your payment. Do not pay twice.");
+  const message =
+    error ||
+    (!status
+      ? "Checking your payment…"
+      : paid
+        ? `Your pickup order is confirmed for ${rupiah(status.totalPrice)}.`
+        : "We will refresh this page when Midtrans confirms your payment. Do not pay twice.");
 
   return (
     <StorefrontShell>
       <Card className="mx-auto max-w-xl text-center">
         <CardContent className="py-12">
-          <div className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300" : "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300"}`}><CheckCircle2 className="size-8" /></div>
-          <h1 className="font-display mt-6 text-3xl font-bold">{paid ? "Payment received" : "Payment status pending"}</h1>
-          <p className="mt-4 leading-7 text-stone-600 dark:text-stone-300">{message}</p>
-          {reference && <p className="mt-6 text-xs font-medium tracking-wide text-stone-400 dark:text-stone-500">ORDER REFERENCE · {reference}</p>}
-          <Button asChild className="mt-8"><Link to="/">Continue shopping</Link></Button>
+          <div
+            className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300" : "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300"}`}
+          >
+            <CheckCircle2 className="size-8" />
+          </div>
+          <h1 className="font-display mt-6 text-3xl font-bold">
+            {paid ? "Payment received" : "Payment status pending"}
+          </h1>
+          <p className="mt-4 leading-7 text-stone-600 dark:text-stone-300">
+            {message}
+          </p>
+          {reference && (
+            <p className="mt-6 text-xs font-medium tracking-wide text-stone-400 dark:text-stone-500">
+              ORDER REFERENCE · {reference}
+            </p>
+          )}
+          <Button asChild className="mt-8">
+            <Link to="/">Continue shopping</Link>
+          </Button>
         </CardContent>
       </Card>
     </StorefrontShell>

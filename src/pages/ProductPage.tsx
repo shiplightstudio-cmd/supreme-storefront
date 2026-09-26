@@ -24,7 +24,10 @@ export function ProductPage() {
 
   useEffect(() => {
     if (!id) return;
-    api.product(id).then(setProduct).catch((error: Error) => setError(error.message));
+    api
+      .product(id)
+      .then(setProduct)
+      .catch((error: Error) => setError(error.message));
   }, [id]);
 
   const addToCart = () => {
@@ -34,40 +37,68 @@ export function ProductPage() {
   };
 
   if (error) {
-    return <StorefrontShell><Alert variant="destructive">{error}</Alert></StorefrontShell>;
+    return (
+      <StorefrontShell>
+        <Alert variant="destructive">{error}</Alert>
+      </StorefrontShell>
+    );
   }
 
   if (!product) {
-    return <StorefrontShell><Loader label="Loading product…" /></StorefrontShell>;
+    return (
+      <StorefrontShell>
+        <Loader label="Loading product…" />
+      </StorefrontShell>
+    );
   }
 
   return (
     <StorefrontShell>
       <Button asChild variant="ghost" className="mb-8 -ml-3">
-        <Link to="/"><ArrowLeft className="size-4" />Back to collection</Link>
+        <Link to="/">
+          <ArrowLeft className="size-4" />
+          Back to collection
+        </Link>
       </Button>
       <section className="grid gap-10 lg:grid-cols-[1.1fr_.9fr]">
         <ProductVisual />
         <div>
           <Badge>Finished good</Badge>
-          <h1 className="font-display mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{product.name}</h1>
+          <h1 className="font-display mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+            {product.name}
+          </h1>
           <p className="mt-5 text-3xl font-bold">{rupiah(product.price)}</p>
-          <div className="mt-5"><StockBadge quantity={product.quantity} /></div>
-          <p className="mt-5 leading-7 text-stone-600 dark:text-stone-300">Prepared by Supreme ERP and available for direct pickup.</p>
+          <div className="mt-5">
+            <StockBadge quantity={product.quantity} />
+          </div>
+          <p className="mt-5 leading-7 text-stone-600 dark:text-stone-300">
+            Prepared by Supreme ERP and available for direct pickup.
+          </p>
           {product.properties.length > 0 && (
             <div className="mt-8 grid grid-cols-2 gap-3">
               {product.properties.map((property) => (
-                <Card key={property.name} className="bg-stone-50 shadow-none dark:bg-stone-950">
+                <Card
+                  key={property.name}
+                  className="bg-stone-50 shadow-none dark:bg-stone-950"
+                >
                   <CardContent className="p-4">
-                    <p className="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">{property.name}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                      {property.name}
+                    </p>
                     <p className="mt-1 font-semibold">{property.value}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           )}
-          <Button className="mt-8 w-full sm:w-auto" size="lg" disabled={!product.quantity} onClick={addToCart}>
-            <ShoppingBag className="size-4" />Add to cart
+          <Button
+            className="mt-8 w-full sm:w-auto"
+            size="lg"
+            disabled={!product.quantity}
+            onClick={addToCart}
+          >
+            <ShoppingBag className="size-4" />
+            Add to cart
           </Button>
         </div>
       </section>

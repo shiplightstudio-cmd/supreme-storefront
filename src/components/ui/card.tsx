@@ -34,7 +34,13 @@ export const CardDescription = ({
   className,
   ...props
 }: HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn("text-sm leading-6 text-stone-500 dark:text-stone-400", className)} {...props} />
+  <p
+    className={cn(
+      "text-sm leading-6 text-stone-500 dark:text-stone-400",
+      className,
+    )}
+    {...props}
+  />
 );
 export const CardContent = ({
   className,

@@ -19,10 +19,12 @@ export function Alert({
       role="alert"
       className={cn(
         "flex gap-3 rounded-xl border p-4 text-sm",
-        variant === "destructive" && "border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/60 dark:text-red-200",
+        variant === "destructive" &&
+          "border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/60 dark:text-red-200",
         variant === "success" &&
           "border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-200",
-        variant === "default" && "border-teal-100 bg-teal-50 text-teal-900 dark:border-teal-900 dark:bg-teal-950/60 dark:text-teal-100",
+        variant === "default" &&
+          "border-teal-100 bg-teal-50 text-teal-900 dark:border-teal-900 dark:bg-teal-950/60 dark:text-teal-100",
         className,
       )}
       {...props}
