@@ -76,6 +76,8 @@ The interface supports light and dark themes. On a first visit it follows the op
 
 ## How to use the storefront
 
+![Supreme Storefront six-step usage flow](docs/assets/storefront-usage-flow.png)
+
 1. Open the **Collection** page to view available products and their pickup stock.
 2. Select a product to see its price, properties, and availability.
 3. Choose **Add to cart**, then adjust quantities or remove items from **Your cart**.
