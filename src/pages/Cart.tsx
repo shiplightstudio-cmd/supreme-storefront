@@ -33,20 +33,23 @@ export function CartPage() {
           <div className="space-y-4">
             {items.map(({ product, quantity }) => (
               <Card key={product.id}>
-                <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
-                  <ProductVisual small />
-                  <div className="flex-1">
-                    <Link
-                      className="font-display font-semibold hover:text-teal-700"
-                      to={`/products/${product.id}`}
-                    >
-                      {product.name}
-                    </Link>
-                    <p className="text-sm text-stone-500 dark:text-stone-400">
-                      {rupiah(product.price)} each
-                    </p>
+                <CardContent className="flex justify-between flex-wrap gap-4 p-4 sm:flex-row sm:items-center">
+                  <div className="flex gap-x-6 items-center">
+                    <ProductVisual small />
+                    <div>
+                      <Link
+                        className="font-display font-semibold hover:text-teal-700"
+                        to={`/products/${product.id}`}
+                      >
+                        {product.name}
+                      </Link>
+                      <p className="text-sm text-stone-500 dark:text-stone-400">
+                        {rupiah(product.price)} each
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between gap-3">
+
+                  <div className="flex items-center gap-4 sm:gap-6 flex-1 justify-end">
                     <div className="flex items-center rounded-xl border p-1">
                       <Button
                         variant="ghost"
@@ -69,8 +72,9 @@ export function CartPage() {
                         <Plus className="size-4" />
                       </Button>
                     </div>
+
                     <Button
-                      variant="ghost"
+                      variant="destructive"
                       size="icon"
                       aria-label="Remove item"
                       onClick={() => remove(product.id)}
