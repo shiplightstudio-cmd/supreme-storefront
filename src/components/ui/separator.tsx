@@ -1,3 +1,12 @@
 import { type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
-export const Separator = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => <div role="separator" className={cn("h-px w-full bg-stone-200", className)} {...props} />;
+export const Separator = ({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) => (
+  <div
+    role="separator"
+    className={cn("h-px w-full bg-stone-200", className)}
+    {...props}
+  />
+);

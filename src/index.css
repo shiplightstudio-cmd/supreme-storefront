@@ -11,9 +11,20 @@
 }
 
 @layer base {
-  * { @apply border-stone-200; }
-  html { @apply scroll-smooth; }
-  body { @apply min-h-screen bg-stone-50 font-sans text-stone-900 antialiased; }
-  button, input { font: inherit; }
-  ::selection { @apply bg-teal-100 text-teal-950; }
+  * {
+    @apply border-stone-200;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply min-h-screen bg-stone-50 font-sans text-stone-900 antialiased;
+  }
+  button,
+  input {
+    font: inherit;
+  }
+  ::selection {
+    @apply bg-teal-100 text-teal-950;
+  }
 }

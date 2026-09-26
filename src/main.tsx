@@ -4,6 +4,7 @@ import App from "./App";
 import { CartProvider } from "./contexts/cart";
 import { ToastProvider } from "./contexts/toast";
 import "./index.css";
+
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <ToastProvider>
