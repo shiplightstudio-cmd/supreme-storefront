@@ -32,7 +32,7 @@ export function Sheet({
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative h-full w-[min(22rem,88vw)] bg-white p-6 shadow-2xl"
+        className="relative h-full w-[min(22rem,88vw)] bg-white p-6 shadow-2xl dark:bg-stone-900"
       >
         <div className="flex items-center justify-between">
           <p className="font-display text-lg font-semibold">{title}</p>

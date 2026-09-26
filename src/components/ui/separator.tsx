@@ -6,7 +6,7 @@ export const Separator = ({
 }: HTMLAttributes<HTMLDivElement>) => (
   <div
     role="separator"
-    className={cn("h-px w-full bg-stone-200", className)}
+    className={cn("h-px w-full bg-stone-200 dark:bg-stone-800", className)}
     {...props}
   />
 );

@@ -6,7 +6,7 @@ export const Label = forwardRef<
 >(({ className, ...props }, ref) => (
   <label
     ref={ref}
-    className={cn("text-sm font-semibold text-stone-800", className)}
+    className={cn("text-sm font-semibold text-stone-800 dark:text-stone-200", className)}
     {...props}
   />
 ));

@@ -6,7 +6,7 @@ export const Card = ({
 }: HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "rounded-2xl border border-stone-200 bg-white shadow-[0_1px_2px_rgba(28,25,23,.05)]",
+      "rounded-2xl border border-stone-200 bg-white shadow-[0_1px_2px_rgba(28,25,23,.05)] dark:border-stone-800 dark:bg-stone-900 dark:shadow-none",
       className,
     )}
     {...props}
@@ -24,7 +24,7 @@ export const CardTitle = ({
 }: HTMLAttributes<HTMLHeadingElement>) => (
   <h2
     className={cn(
-      "font-display text-lg font-semibold tracking-tight text-stone-950",
+      "font-display text-lg font-semibold tracking-tight text-stone-950 dark:text-stone-50",
       className,
     )}
     {...props}
@@ -34,7 +34,7 @@ export const CardDescription = ({
   className,
   ...props
 }: HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn("text-sm leading-6 text-stone-500", className)} {...props} />
+  <p className={cn("text-sm leading-6 text-stone-500 dark:text-stone-400", className)} {...props} />
 );
 export const CardContent = ({
   className,

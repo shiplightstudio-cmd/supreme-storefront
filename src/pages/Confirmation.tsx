@@ -30,10 +30,10 @@ export function ConfirmationPage() {
     <StorefrontShell>
       <Card className="mx-auto max-w-xl text-center">
         <CardContent className="py-12">
-          <div className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"}`}><CheckCircle2 className="size-8" /></div>
+          <div className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300" : "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300"}`}><CheckCircle2 className="size-8" /></div>
           <h1 className="font-display mt-6 text-3xl font-bold">{paid ? "Payment received" : "Payment status pending"}</h1>
-          <p className="mt-4 leading-7 text-stone-600">{message}</p>
-          {reference && <p className="mt-6 text-xs font-medium tracking-wide text-stone-400">ORDER REFERENCE · {reference}</p>}
+          <p className="mt-4 leading-7 text-stone-600 dark:text-stone-300">{message}</p>
+          {reference && <p className="mt-6 text-xs font-medium tracking-wide text-stone-400 dark:text-stone-500">ORDER REFERENCE · {reference}</p>}
           <Button asChild className="mt-8"><Link to="/">Continue shopping</Link></Button>
         </CardContent>
       </Card>

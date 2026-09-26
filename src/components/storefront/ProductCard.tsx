@@ -18,7 +18,7 @@ export function ProductCard({ product }: { product: Product }) {
       <Link to={`/products/${product.id}`}><div className="relative"><ProductVisual /><div className="absolute left-2 top-2 origin-top-left scale-75 sm:left-4 sm:top-4 sm:scale-100"><StockBadge quantity={product.quantity} /></div></div></Link>
       <CardContent className="p-3 sm:p-5">
         <div className="flex flex-col gap-1 sm:flex-row sm:gap-3"><Link className="font-display text-sm font-semibold hover:text-teal-700 sm:text-base" to={`/products/${product.id}`}>{product.name}</Link><b className="whitespace-nowrap text-xs sm:text-sm">{rupiah(product.price)}</b></div>
-        <p className="mt-1 hidden text-sm text-stone-500 sm:block">Finished good · Pickup from our facility</p>
+        <p className="mt-1 hidden text-sm text-stone-500 dark:text-stone-400 sm:block">Finished good · Pickup from our facility</p>
         <Button className="mt-3 h-8 w-full text-xs sm:mt-5 sm:h-10 sm:text-sm" disabled={!product.quantity} onClick={addToCart}>{product.quantity ? "Add to cart" : "Unavailable"}</Button>
       </CardContent>
     </Card>

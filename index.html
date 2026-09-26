@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0f172a" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("supreme-theme");
+        const isDark = savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", isDark);
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+        document.querySelector("meta[name=\"theme-color\"]")?.setAttribute("content", isDark ? "#0c0a09" : "#fafaf9");
+      })();
+    </script>
     <title>Supreme Store</title>
   </head>
   <body>

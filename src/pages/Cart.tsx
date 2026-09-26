@@ -19,7 +19,7 @@ export function CartPage() {
       {!items.length ? (
         <Card className="mt-8">
           <CardContent className="py-14 text-center">
-            <ShoppingBag className="mx-auto size-9 text-stone-400" />
+            <ShoppingBag className="mx-auto size-9 text-stone-400 dark:text-stone-500" />
             <p className="mt-4 font-semibold">Your cart is empty.</p>
             <Button asChild className="mt-6"><Link to="/">Browse products</Link></Button>
           </CardContent>
@@ -33,7 +33,7 @@ export function CartPage() {
                   <ProductVisual small />
                   <div className="flex-1">
                     <Link className="font-display font-semibold hover:text-teal-700" to={`/products/${product.id}`}>{product.name}</Link>
-                    <p className="text-sm text-stone-500">{rupiah(product.price)} each</p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400">{rupiah(product.price)} each</p>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center rounded-xl border p-1">

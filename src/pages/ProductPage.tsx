@@ -53,13 +53,13 @@ export function ProductPage() {
           <h1 className="font-display mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{product.name}</h1>
           <p className="mt-5 text-3xl font-bold">{rupiah(product.price)}</p>
           <div className="mt-5"><StockBadge quantity={product.quantity} /></div>
-          <p className="mt-5 leading-7 text-stone-600">Prepared by Supreme ERP and available for direct pickup.</p>
+          <p className="mt-5 leading-7 text-stone-600 dark:text-stone-300">Prepared by Supreme ERP and available for direct pickup.</p>
           {product.properties.length > 0 && (
             <div className="mt-8 grid grid-cols-2 gap-3">
               {product.properties.map((property) => (
-                <Card key={property.name} className="bg-stone-50 shadow-none">
+                <Card key={property.name} className="bg-stone-50 shadow-none dark:bg-stone-950">
                   <CardContent className="p-4">
-                    <p className="text-xs font-bold uppercase tracking-wider text-stone-500">{property.name}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">{property.name}</p>
                     <p className="mt-1 font-semibold">{property.value}</p>
                   </CardContent>
                 </Card>

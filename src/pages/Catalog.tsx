@@ -39,7 +39,7 @@ export function CatalogPage() {
         </section>
       ) : (
         <Card>
-          <CardContent className="py-14 text-center text-stone-500">
+          <CardContent className="py-14 text-center text-stone-500 dark:text-stone-400">
             No products are available for pickup yet.
           </CardContent>
         </Card>
