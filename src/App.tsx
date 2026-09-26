@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, Route, Routes, useNavigate, useParams } from "react-router";
 import {
   ArrowLeft,
-  Boxes,
   CheckCircle2,
-  Menu,
   Minus,
-  PackageCheck,
   Plus,
   ShoppingBag,
   Trash2,
@@ -28,8 +25,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader } from "@/components/ui/loader";
-import { Separator } from "@/components/ui/separator";
-import { Sheet } from "@/components/ui/sheet";
+import { OrderSummary } from "@/components/storefront/order-summary";
+import { ProductCard } from "@/components/storefront/product-card";
+import { ProductVisual } from "@/components/storefront/product-visual";
+import { StockBadge } from "@/components/storefront/stock-badge";
+import { StorefrontShell } from "@/components/storefront/storefront-shell";
 
 const loadSnap = () =>
   new Promise<void>((resolve, reject) => {
@@ -45,144 +45,6 @@ const loadSnap = () =>
     document.head.append(script);
   });
 
-const Visual = ({ small = false }: { small?: boolean }) => (
-  <div
-    className={`relative grid place-items-center overflow-hidden bg-gradient-to-br from-teal-950 via-teal-700 to-cyan-700 text-white ${small ? "size-20 shrink-0 rounded-xl" : "min-h-72 rounded-3xl"}`}
-  >
-    <div className="absolute -right-12 -top-12 size-44 rounded-full bg-white/10" />
-    <Boxes className={small ? "size-8" : "size-24"} strokeWidth={1.3} />
-  </div>
-);
-
-const Stock = ({ quantity }: { quantity: number }) =>
-  quantity > 0 ? (
-    <Badge variant="success">
-      <PackageCheck className="mr-1 size-3.5" />
-      {quantity} ready for pickup
-    </Badge>
-  ) : (
-    <Badge variant="destructive">Out of stock</Badge>
-  );
-
-function Header() {
-  const { count } = useCart();
-  const [open, setOpen] = useState(false);
-  const nav = (
-    <nav className="flex flex-col gap-1 lg:flex-row">
-      <Link
-        onClick={() => setOpen(false)}
-        className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100"
-        to="/"
-      >
-        Collection
-      </Link>
-      <Link
-        onClick={() => setOpen(false)}
-        className="rounded-lg px-3 py-2 text-sm font-semibold text-stone-600 hover:bg-stone-100"
-        to="/cart"
-      >
-        Your cart
-      </Link>
-    </nav>
-  );
-  return (
-    <header className="sticky top-0 z-40 border-b bg-stone-50/90 backdrop-blur">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
-        <Link className="flex items-center gap-3" to="/">
-          <span className="grid size-10 place-items-center rounded-xl bg-teal-700 text-white">
-            <Boxes className="size-5" />
-          </span>
-          <span>
-            <b className="font-display block tracking-tight">Supreme Store</b>
-            <small className="block text-[10px] font-bold uppercase tracking-[.16em] text-teal-700">
-              Made to move work
-            </small>
-          </span>
-        </Link>
-        <div className="hidden lg:block">{nav}</div>
-        <div className="flex gap-1">
-          <Button asChild variant="outline" className="hidden sm:inline-flex">
-            <Link to="/cart">
-              <ShoppingBag className="size-4" />
-              Cart{" "}
-              {count > 0 && (
-                <Badge className="ml-1 bg-teal-700 text-white">{count}</Badge>
-              )}
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            aria-label="Open menu"
-            onClick={() => setOpen(true)}
-          >
-            <Menu />
-          </Button>
-        </div>
-      </div>
-      <Sheet open={open} onOpenChange={setOpen} title="Supreme Store">
-        {nav}
-        <Separator className="my-6" />
-        <Button asChild className="w-full">
-          <Link to="/cart">Cart {count > 0 && `(${count})`}</Link>
-        </Button>
-      </Sheet>
-    </header>
-  );
-}
-
-const Shell = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <Header />
-    <main className="mx-auto min-h-[calc(100vh-72px)] max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-      {children}
-    </main>
-  </>
-);
-
-function ProductCard({ product }: { product: Product }) {
-  const { add } = useCart();
-  const { toast } = useToast();
-  const addToCart = () => {
-    add(product);
-    toast(`${product.name} is ready in your cart.`);
-  };
-  return (
-    <Card className="overflow-hidden transition hover:-translate-y-1 hover:shadow-lg">
-      <Link to={`/products/${product.id}`}>
-        <div className="relative">
-          <Visual />
-          <div className="absolute left-4 top-4">
-            <Stock quantity={product.quantity} />
-          </div>
-        </div>
-      </Link>
-      <CardContent className="p-5">
-        <div className="flex justify-between gap-3">
-          <Link
-            className="font-display font-semibold hover:text-teal-700"
-            to={`/products/${product.id}`}
-          >
-            {product.name}
-          </Link>
-          <b className="whitespace-nowrap text-sm">{rupiah(product.price)}</b>
-        </div>
-        <p className="mt-2 text-sm text-stone-500">
-          Finished good · Pickup from our facility
-        </p>
-        <Button
-          className="mt-5 w-full"
-          disabled={!product.quantity}
-          onClick={addToCart}
-        >
-          {product.quantity ? "Add to cart" : "Unavailable"}
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
-
 function Catalog() {
   const [products, setProducts] = useState<Product[]>([]),
     [error, setError] = useState(""),
@@ -195,7 +57,7 @@ function Catalog() {
       .finally(() => setLoading(false));
   }, []);
   return (
-    <Shell>
+    <StorefrontShell>
       <section className="relative mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-teal-950 via-teal-800 to-teal-700 px-6 py-12 text-white sm:px-10 sm:py-16">
         <div className="max-w-2xl">
           <Badge className="bg-white/15 text-white">Pickup collection</Badge>
@@ -225,7 +87,7 @@ function Catalog() {
           </CardContent>
         </Card>
       )}
-    </Shell>
+    </StorefrontShell>
   );
 }
 
@@ -250,18 +112,18 @@ function ProductPage() {
   }, [id]);
   if (error)
     return (
-      <Shell>
+      <StorefrontShell>
         <Alert variant="destructive">{error}</Alert>
-      </Shell>
+      </StorefrontShell>
     );
   if (!product)
     return (
-      <Shell>
+      <StorefrontShell>
         <Loader label="Loading product…" />
-      </Shell>
+      </StorefrontShell>
     );
   return (
-    <Shell>
+    <StorefrontShell>
       <Button asChild variant="ghost" className="mb-8 -ml-3">
         <Link to="/">
           <ArrowLeft className="size-4" />
@@ -269,7 +131,7 @@ function ProductPage() {
         </Link>
       </Button>
       <section className="grid gap-10 lg:grid-cols-[1.1fr_.9fr]">
-        <Visual />
+        <ProductVisual />
         <div>
           <Badge>Finished good</Badge>
           <h1 className="font-display mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
@@ -277,7 +139,7 @@ function ProductPage() {
           </h1>
           <p className="mt-5 text-3xl font-bold">{rupiah(product.price)}</p>
           <div className="mt-5">
-            <Stock quantity={product.quantity} />
+            <StockBadge quantity={product.quantity} />
           </div>
           <p className="mt-5 leading-7 text-stone-600">
             Prepared by Supreme ERP and available for direct pickup.
@@ -307,58 +169,14 @@ function ProductPage() {
           </Button>
         </div>
       </section>
-    </Shell>
-  );
-}
-
-function Summary({
-  total,
-  items,
-  checkout,
-}: {
-  total: number;
-  items?: ReturnType<typeof useCart>["items"];
-  checkout?: boolean;
-}) {
-  return (
-    <Card className="h-fit lg:sticky lg:top-24">
-      <CardHeader>
-        <CardTitle>{checkout ? "Order summary" : "Pickup order"}</CardTitle>
-        <CardDescription>
-          Pickup only · Secure payment via Midtrans
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {items?.map((i) => (
-          <div
-            className="mb-3 flex justify-between gap-3 text-sm"
-            key={i.product.id}
-          >
-            <span className="text-stone-600">
-              {i.product.name} × {i.quantity}
-            </span>
-            <b>{rupiah(i.product.price * i.quantity)}</b>
-          </div>
-        ))}
-        {items?.length ? <Separator className="my-5" /> : null}
-        <div className="flex justify-between">
-          <b>Total</b>
-          <strong className="text-xl">{rupiah(total)}</strong>
-        </div>
-        {checkout && (
-          <Button asChild className="mt-6 w-full">
-            <Link to="/checkout">Checkout</Link>
-          </Button>
-        )}
-      </CardContent>
-    </Card>
+    </StorefrontShell>
   );
 }
 
 function Cart() {
   const { items, setQuantity, remove, total } = useCart();
   return (
-    <Shell>
+    <StorefrontShell>
       <Badge variant="secondary">Your selection</Badge>
       <h1 className="font-display mt-3 text-4xl font-bold tracking-tight">
         Your cart
@@ -379,7 +197,7 @@ function Cart() {
             {items.map(({ product, quantity }) => (
               <Card key={product.id}>
                 <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
-                  <Visual small />
+                  <ProductVisual small />
                   <div className="flex-1">
                     <Link
                       className="font-display font-semibold hover:text-teal-700"
@@ -427,10 +245,10 @@ function Cart() {
               </Card>
             ))}
           </div>
-          <Summary total={total} checkout />
+          <OrderSummary total={total} checkout />
         </div>
       )}
-    </Shell>
+    </StorefrontShell>
   );
 }
 
@@ -443,7 +261,7 @@ function Checkout() {
     [error, setError] = useState("");
   if (!items.length)
     return (
-      <Shell>
+      <StorefrontShell>
         <Card>
           <CardContent className="py-12 text-center">
             <p>Your cart is empty.</p>
@@ -452,7 +270,7 @@ function Checkout() {
             </Button>
           </CardContent>
         </Card>
-      </Shell>
+      </StorefrontShell>
     );
   const pay = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -483,7 +301,7 @@ function Checkout() {
     }
   };
   return (
-    <Shell>
+    <StorefrontShell>
       <Badge variant="secondary">Secure checkout</Badge>
       <h1 className="font-display mt-3 text-4xl font-bold tracking-tight">
         Complete your pickup order
@@ -526,9 +344,9 @@ function Checkout() {
             </form>
           </CardContent>
         </Card>
-        <Summary total={total} items={items} />
+        <OrderSummary total={total} items={items} />
       </div>
-    </Shell>
+    </StorefrontShell>
   );
 }
 
@@ -556,7 +374,7 @@ function Confirmation() {
   }, [reference]);
   const paid = status?.paymentStatus === "paid";
   return (
-    <Shell>
+    <StorefrontShell>
       <Card className="mx-auto max-w-xl text-center">
         <CardContent className="py-12">
           <div
@@ -585,7 +403,7 @@ function Confirmation() {
           </Button>
         </CardContent>
       </Card>
-    </Shell>
+    </StorefrontShell>
   );
 }
 
