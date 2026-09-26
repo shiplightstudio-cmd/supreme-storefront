@@ -23,12 +23,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-stone-50/90 backdrop-blur">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link className="flex items-center gap-3" to="/">
           <span className="grid size-10 place-items-center rounded-xl bg-teal-700 text-white"><Boxes className="size-5" /></span>
           <span>
             <b className="font-display block tracking-tight">Supreme Store</b>
-            <small className="block text-[10px] font-bold uppercase tracking-[.16em] text-teal-700">Made to move work</small>
           </span>
         </Link>
         <div className="hidden lg:block">{nav}</div>
