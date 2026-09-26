@@ -26,6 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
       </Link>
+      
       <CardContent className="p-3 sm:p-5">
         <div className="flex flex-col gap-1 sm:flex-row sm:gap-3">
           <Link
