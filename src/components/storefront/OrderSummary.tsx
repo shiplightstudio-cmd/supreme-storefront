@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useCart } from "@/contexts/cart";
+import { useCart } from "@/contexts/Cart";
 import { rupiah } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

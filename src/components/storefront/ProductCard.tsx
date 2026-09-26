@@ -1,12 +1,12 @@
 import { Link } from "react-router";
 import type { Product } from "@/lib/api";
-import { useCart } from "@/contexts/cart";
-import { useToast } from "@/contexts/toast";
+import { useCart } from "@/contexts/Cart";
+import { useToast } from "@/contexts/Toast";
 import { rupiah } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ProductVisual } from "./product-visual";
-import { StockBadge } from "./stock-badge";
+import { ProductVisual } from "./ProductVisual";
+import { StockBadge } from "./StockBadge";
 
 export function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();

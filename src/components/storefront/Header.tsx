@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Boxes, Menu, ShoppingBag } from "lucide-react";
 import { Link } from "react-router";
-import { useCart } from "@/contexts/cart";
+import { useCart } from "@/contexts/Cart";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

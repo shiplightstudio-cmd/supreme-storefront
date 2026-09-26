@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { api } from "@/lib/api";
-import { useCart } from "@/contexts/cart";
+import { useCart } from "@/contexts/Cart";
 import { rupiah } from "@/lib/utils";
 import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { OrderSummary } from "@/components/storefront/order-summary";
-import { StorefrontShell } from "@/components/storefront/storefront-shell";
+import { OrderSummary } from "@/components/storefront/OrderSummary";
+import { StorefrontShell } from "@/components/storefront/StorefrontShell";
 
 const loadSnap = () => new Promise<void>((resolve, reject) => {
   if (window.snap) return resolve();

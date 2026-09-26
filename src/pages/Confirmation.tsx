@@ -5,7 +5,7 @@ import { api } from "@/lib/api";
 import { rupiah } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { StorefrontShell } from "@/components/storefront/storefront-shell";
+import { StorefrontShell } from "@/components/storefront/StorefrontShell";
 
 type PaymentStatus = { paymentStatus: string; totalPrice: number };
 

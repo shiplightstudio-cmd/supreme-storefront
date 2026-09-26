@@ -1,13 +1,13 @@
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Link } from "react-router";
-import { useCart } from "@/contexts/cart";
+import { useCart } from "@/contexts/Cart";
 import { rupiah } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { OrderSummary } from "@/components/storefront/order-summary";
-import { ProductVisual } from "@/components/storefront/product-visual";
-import { StorefrontShell } from "@/components/storefront/storefront-shell";
+import { OrderSummary } from "@/components/storefront/OrderSummary";
+import { ProductVisual } from "@/components/storefront/ProductVisual";
+import { StorefrontShell } from "@/components/storefront/StorefrontShell";
 
 export function CartPage() {
   const { items, setQuantity, remove, total } = useCart();

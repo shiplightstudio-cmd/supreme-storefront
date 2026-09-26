@@ -5,8 +5,8 @@ import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader } from "@/components/ui/loader";
-import { ProductCard } from "@/components/storefront/product-card";
-import { StorefrontShell } from "@/components/storefront/storefront-shell";
+import { ProductCard } from "@/components/storefront/ProductCard";
+import { StorefrontShell } from "@/components/storefront/StorefrontShell";
 
 export function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);

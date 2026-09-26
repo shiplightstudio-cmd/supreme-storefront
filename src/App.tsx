@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
-import { CartPage } from "@/pages/cart";
-import { CatalogPage } from "@/pages/catalog";
-import { CheckoutPage } from "@/pages/checkout";
-import { ConfirmationPage } from "@/pages/confirmation";
-import { ProductPage } from "@/pages/product-page";
+import { CartPage } from "@/pages/Cart";
+import { CatalogPage } from "@/pages/Catalog";
+import { CheckoutPage } from "@/pages/Checkout";
+import { ConfirmationPage } from "@/pages/Confirmation";
+import { ProductPage } from "@/pages/ProductPage";
 
 export default function App() {
   return (

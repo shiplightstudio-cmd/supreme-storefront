@@ -3,17 +3,17 @@ import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Link, useParams } from "react-router";
 import type { Product } from "@/lib/api";
 import { api } from "@/lib/api";
-import { useCart } from "@/contexts/cart";
-import { useToast } from "@/contexts/toast";
+import { useCart } from "@/contexts/Cart";
+import { useToast } from "@/contexts/Toast";
 import { rupiah } from "@/lib/utils";
 import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader } from "@/components/ui/loader";
-import { ProductVisual } from "@/components/storefront/product-visual";
-import { StockBadge } from "@/components/storefront/stock-badge";
-import { StorefrontShell } from "@/components/storefront/storefront-shell";
+import { ProductVisual } from "@/components/storefront/ProductVisual";
+import { StockBadge } from "@/components/storefront/StockBadge";
+import { StorefrontShell } from "@/components/storefront/StorefrontShell";
 
 export function ProductPage() {
   const { id } = useParams();

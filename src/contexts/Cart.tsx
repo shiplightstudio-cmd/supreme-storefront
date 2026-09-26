@@ -12,6 +12,7 @@ type Cart = {
 };
 const Context = createContext<Cart | undefined>(undefined);
 const key = "supreme-store-cart";
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<Item[]>(() =>
     JSON.parse(localStorage.getItem(key) || "[]"),
@@ -69,6 +70,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
+
 export const useCart = () => {
   const cart = useContext(Context);
   if (!cart) throw new Error("useCart must be used inside CartProvider");
