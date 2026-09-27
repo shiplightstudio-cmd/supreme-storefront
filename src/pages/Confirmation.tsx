@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 import { Link, useParams } from "react-router";
 import { api } from "@/lib/api";
 import { rupiah } from "@/lib/utils";
@@ -47,9 +47,13 @@ export function ConfirmationPage() {
       <Card className="mx-auto max-w-xl text-center">
         <CardContent className="py-12">
           <div
-            className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300" : "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300"}`}
+            className={`mx-auto grid size-16 place-items-center rounded-full ${paid ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300" : cancelled ? "bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-300" : "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-300"}`}
           >
-            <CheckCircle2 className="size-8" />
+            {cancelled ? (
+              <XCircle className="size-8" />
+            ) : (
+              <CheckCircle2 className="size-8" />
+            )}
           </div>
           <h1 className="font-display mt-6 text-3xl font-bold">
             {paid ? "Payment received" : cancelled ? "Payment cancelled" : "Payment status pending"}
