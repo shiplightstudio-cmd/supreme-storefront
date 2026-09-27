@@ -28,10 +28,24 @@ export const api = {
     customer: { name: string; email: string };
     items: { productId: number; quantity: number }[];
   }) =>
-    request<{ publicReference: string; snapToken: string }>(
+    request<{
+      publicReference: string;
+      snapToken: string;
+      skipPaymentVerification: boolean;
+    }>(
       "/store/checkouts",
       { method: "POST", body: JSON.stringify(payload) },
     ),
+  confirmSnapSuccess: (reference: string, snapResult: MidtransSnapResult) =>
+    request<CheckoutStatus>(`/store/checkouts/${reference}/confirm-snap-success`, {
+      method: "POST",
+      body: JSON.stringify(snapResult),
+    }),
+  cancelCheckout: (reference: string) =>
+    request<CheckoutStatus>(`/store/checkouts/${reference}/cancel`, {
+      method: "POST",
+    }),
+
   status: (reference: string) =>
     request<CheckoutStatus>(`/store/checkouts/${reference}`),
 };

@@ -67,15 +67,35 @@ export function CheckoutPage() {
           quantity: item.quantity,
         })),
       });
+      const cancelCheckout = async () => {
+        try {
+          await api.cancelCheckout(order.publicReference);
+          navigate(`/payment/${order.publicReference}`);
+        } catch (error) {
+          setError(
+            error instanceof Error ? error.message : "Unable to cancel payment",
+          );
+        }
+      };
       await loadSnap();
       window.snap?.pay(order.snapToken, {
-        onSuccess: () => {
-          clear();
-          navigate(`/payment/${order.publicReference}`);
+        onSuccess: async (result) => {
+          try {
+            if (order.skipPaymentVerification)
+              await api.confirmSnapSuccess(order.publicReference, result);
+            clear();
+            navigate(`/payment/${order.publicReference}`);
+          } catch (error) {
+            setError(
+              error instanceof Error
+                ? error.message
+                : "Unable to confirm payment",
+            );
+          }
         },
         onPending: () => navigate(`/payment/${order.publicReference}`),
-        onError: () => navigate(`/payment/${order.publicReference}`),
-        onClose: () => navigate(`/payment/${order.publicReference}`),
+        onError: cancelCheckout,
+        onClose: cancelCheckout,
       });
     } catch (error) {
       setError(

@@ -31,13 +31,16 @@ export function ConfirmationPage() {
   }, [reference]);
 
   const paid = status?.paymentStatus === "paid";
+  const cancelled = status?.paymentStatus === "cancel";
   const message =
     error ||
     (!status
       ? "Checking your payment…"
       : paid
         ? `Your pickup order is confirmed for ${rupiah(status.totalPrice)}.`
-        : "We will refresh this page when Midtrans confirms your payment. Do not pay twice.");
+        : cancelled
+          ? "Your payment was cancelled. No order will be processed."
+          : "We will refresh this page when Midtrans confirms your payment. Do not pay twice.");
 
   return (
     <StorefrontShell>
@@ -49,7 +52,7 @@ export function ConfirmationPage() {
             <CheckCircle2 className="size-8" />
           </div>
           <h1 className="font-display mt-6 text-3xl font-bold">
-            {paid ? "Payment received" : "Payment status pending"}
+            {paid ? "Payment received" : cancelled ? "Payment cancelled" : "Payment status pending"}
           </h1>
           <p className="mt-4 leading-7 text-stone-600 dark:text-stone-300">
             {message}
